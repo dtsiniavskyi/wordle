@@ -24,17 +24,17 @@
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="present-label" style="background-color: #c9b458;">Present</span>
-        <input id="present-input" type="text" class="form-control" placeholder="Enter letters that are present in the word" aria-label="Present" aria-describedby="present-label">
+        <input id="present-input" type="text" class="form-control" placeholder="Enter letters that are present in the word. Use underscore to mark unknown letters. Example: _p__n - present letters in word 'plane'" aria-label="Present" aria-describedby="present-label">
       </div>
 
       <div class="input-group mb-3">
         <span class="input-group-text" id="correct-label" style="background-color: #6aaa64;">Correct</span>
-        <input id="correct-input" type="text" class="form-control" placeholder="Enter letters that are present in the word and are on correct places. Use underscore to mark unknown letters. Example: _hi__ - correct letters in possible word 'thing'" aria-label="Correct" aria-describedby="correct-label">
+        <input id="correct-input" type="text" class="form-control" placeholder="Enter letters that are on correct places. Use underscore to mark unknown letters. Example: _la__ - correct letters in word 'plane'" aria-label="Correct" aria-describedby="correct-label">
       </div>
 
       <div class="input-group mb-3">
         <span class="input-group-text" id="absent-label" style="background-color: #787c7e;">Absent</span>
-        <input id="absent-input" type="text" class="form-control" placeholder="Enter letters that do not exist in the word" aria-label="Absent" aria-describedby="absent-label">
+        <input id="absent-input" type="text" class="form-control" placeholder="Enter letters that do not exist in the word. Example: ngtfdou - letters that are absent in word 'plane'" aria-label="Absent" aria-describedby="absent-label">
       </div>
 
       <button type="button" class="btn btn-success" onclick="guess()">Guess</button>
@@ -95,7 +95,7 @@
                 
                 return true;
             });
-            
+
             let $bestGuess = $('#best-guess');
             let bestGuesses = filteredWords.filter(w => new Set(w).size == w.length);
 
