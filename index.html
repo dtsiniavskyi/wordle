@@ -41,7 +41,7 @@
 
     <script>
         $(document).ready(d => {
-            let bestFirstGuesses = words.filter(w => new Set(w).size == w.length)
+            let bestFirstGuesses = words.filter(w => new Set(w).size == w.length);
             let randomIndex = Math.floor(Math.random() * bestFirstGuesses.length);
 
             let $example = $('#word-example');
@@ -60,18 +60,6 @@
             return false; 
         }
 
-        function containsAll(str, substrings) {
-            for (var i = 0; i != substrings.length; i++) {
-                var substring = substrings[i];
-                
-                if (str.indexOf(substring) != - 1) {
-                    return false;
-                }
-            }
-
-            return true; 
-        }
-
         function guess(){
             let $present = $('#present-input');
             let $correct = $('#correct-input');
@@ -79,39 +67,42 @@
 
             let present = $present.val().split('');
             let correct = $correct.val().split('');
-            let absent = $absent.val().split('');            
+            let absent = $absent.val().split('');
 
             let filteredWords = words.filter(w => {
                 if (absent.length > 0 && containsAny(w, absent))
                     return false;
 
-                if (present.length > 0 && !containsAll(w, present))
-                    return false;
-                
-                return true;
-            });
-
-            let guesses = [];
-
-            for(let i=0; i<filteredWords.length; i++) {
-                let goodGuess = true;
-
-                for(let j=0; j<filteredWords[i].length; j++) {
-                    if (correct[j] !== '_'){
-                        if (correct[j] != filteredWords[i][j]) {
-                            goodGuess = false;
+                if (present.length > 0) {
+                    for(let i=0; i<present.length; i++){
+                        if (present[i] === '_')
                             continue;
-                        }
+
+                        if (w[i] === present[i] || w.indexOf(present[i]) < 0)
+                            return false;
                     }
                 }
 
-                if(goodGuess)
-                    guesses.push(filteredWords[i])
-            }
+                if (correct.length > 0) {
+                    for(let i=0; i<w.length; i++) {
+                        if (correct[i] === '_')
+                            continue;                        
+                        
+                        if (w[i] !== correct[i])
+                            return false;
+                    }
+                }
+                
+                return true;
+            });
+            
+            let $bestGuess = $('#best-guess');
+            let bestGuesses = filteredWords.filter(w => new Set(w).size == w.length);
 
-            guesses.forEach(g => {
-                console.log(g)
-            })
+            if (bestGuesses.length === 0)
+                bestGuesses = filteredWords;
+
+            $bestGuess.html(bestGuesses.join(', '));
         }
     </script>
 </body>
