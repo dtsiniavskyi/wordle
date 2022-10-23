@@ -1,9 +1,9 @@
 # Wordle
-Reverse engineered wordle: 
+Reverse engineered [wordle](https://dtsiniavskyi.github.io/wordle/): 
 
 https://www.nytimes.com/games/wordle/index.html
 
-Use hints to tru and guess todays wordl word
+Use hints to try and guess todays wordl word
 
 https://dtsiniavskyi.github.io/wordle/
 
