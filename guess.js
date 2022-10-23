@@ -16,5 +16,3 @@ function Da(e) {
 function Ga(e) {
     return Na(Ha, e)
 };
-
-alert(Da(new Date));
